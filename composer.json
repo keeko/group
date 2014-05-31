@@ -1,0 +1,38 @@
+{
+	"name" : "keeko/group",
+	"type" : "keeko-module",
+	"description" : "Keeko group Module",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "gossi",
+			"homepage" : "http://gos.si"
+		}
+	],
+	"keywords" : [
+		"keeko",
+		"group",
+		"permission"
+	],
+	"require" : {
+		"php" : ">=5.4"
+	},
+	"require-dev" : {
+		"composer/composer" : "@dev",
+		"keeko/core" : "dev-master",
+		"propel/propel" : "@dev"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"keeko\\group\\" : "src"
+		}
+	},
+	"extra" : {
+		"keeko" : {
+			"module" : {
+				"title" : "group",
+				"class" : "keeko\\group\\GroupModule"
+			}
+		},
+		"local" : "../../"
+	}
+}
