@@ -5,9 +5,11 @@ use keeko\core\action\AbstractAction;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use keeko\core\model\Group;
+use keeko\core\model\GroupQuery;
 use keeko\core\exceptions\ValidationException;
 use keeko\core\utils\HydrateUtils;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Updates a group
