@@ -26,7 +26,7 @@ class GroupCreateAction extends AbstractAction
         $data = json_decode($request->getContent(), true);
 
         // hydrate
-        $group = HydrateUtils::hydrate($data, new Group(), ['id', 'user_id', 'name', 'is_guest', 'is_default', 'is_active', 'is_system']);
+        $group = HydrateUtils::hydrate($data, new Group(), ['id', 'owner_id', 'name', 'is_guest', 'is_default', 'is_active', 'is_system']);
 
         // validate
         if (!$group->validate()) {

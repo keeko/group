@@ -1,275 +1,299 @@
 {
-	"name" : "keeko/group",
-	"type" : "keeko-module",
-	"description" : "Keeko group Module",
-	"license" : "MIT",
-	"authors" : [{
-			"name" : "gossi",
-			"homepage" : "http://gos.si"
-		}
-	],
-	"keywords" : [
-		"keeko",
-		"group",
-		"permission"
-	],
-	"require" : {
-		"php" : ">=5.4",
-		"keeko/composer-installer" : "*"
-	},
-	"require-dev" : {
-		"composer/composer" : "@dev",
-		"keeko/core" : "dev-master",
-		"propel/propel" : "@dev"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"keeko\\group\\" : "src"
-		}
-	},
-	"extra" : {
-		"keeko" : {
-			"module" : {
-				"title" : "Groups",
-				"class" : "keeko\\group\\GroupModule",
-				"slug" : "group",
-				"actions" : {
-					"group-list" : {
-						"class" : "keeko\\group\\action\\GroupListAction",
-						"title" : "List all groups",
-						"response" : {
-							"json" : "keeko\\group\\response\\GroupListJsonResponse"
-						}
-					},
-					"group-create" : {
-						"class" : "keeko\\group\\action\\GroupCreateAction",
-						"title" : "Creates a group",
-						"response" : {
-							"json" : "keeko\\group\\response\\GroupCreateJsonResponse"
-						}
-					},
-					"group-read" : {
-						"class" : "keeko\\group\\action\\GroupReadAction",
-						"title" : "Reads a group",
-						"response" : {
-							"json" : "keeko\\group\\response\\GroupReadJsonResponse"
-						}
-					},
-					"group-update" : {
-						"class" : "keeko\\group\\action\\GroupUpdateAction",
-						"title" : "Updates a group",
-						"response" : {
-							"json" : "keeko\\group\\response\\GroupUpdateJsonResponse"
-						}
-					},
-					"group-delete" : {
-						"class" : "keeko\\group\\action\\GroupDeleteAction",
-						"title" : "Deletes a group",
-						"response" : {
-							"json" : "keeko\\group\\response\\GroupDeleteJsonResponse"
-						}
-					}
-				},
-				"api" : {
-					"swaggerVersion" : "1.2",
-					"resourcePath" : "/group",
-					"apis" : [{
-							"path" : "/groups",
-							"operations" : [{
-									"method" : "GET",
-									"summary" : "List all groups",
-									"nickname" : "group-list",
-									"type" : "PagedGroups"
-								}, {
-									"method" : "POST",
-									"summary" : "Creates a group",
-									"nickname" : "group-create",
-									"type" : "Group",
-									"parameters" : [{
-											"name" : "body",
-											"description" : "The new group",
-											"required" : true,
-											"type" : "WritableGroup",
-											"paramType" : "body"
-										}
-									]
-								}
-							]
-						}, {
-							"path" : "/groups/{id}",
-							"operations" : [{
-									"method" : "GET",
-									"summary" : "Reads a group",
-									"nickname" : "group-read",
-									"type" : "Group",
-									"parameters" : [{
-											"name" : "id",
-											"description" : "The group id",
-											"required" : true,
-											"type" : "id",
-											"paramType" : "path"
-										}
-									],
-									"responseMessages" : [{
-											"code" : "400",
-											"message" : "Invalid ID supplied"
-										}, {
-											"code" : "404",
-											"message" : "No group found"
-										}
-									]
-								}, {
-									"method" : "PATCH",
-									"summary" : "Updates a group",
-									"nickname" : "group-update",
-									"type" : "Group",
-									"parameters" : [{
-											"name" : "id",
-											"description" : "The group id",
-											"required" : true,
-											"type" : "id",
-											"paramType" : "path"
-										}
-									],
-									"responseMessages" : [{
-											"code" : "400",
-											"message" : "Invalid ID supplied"
-										}, {
-											"code" : "404",
-											"message" : "No group found"
-										}
-									]
-								}, {
-									"method" : "DELETE",
-									"summary" : "Deletes a group",
-									"nickname" : "group-delete",
-									"type" : "Group",
-									"parameters" : [{
-											"name" : "id",
-											"description" : "The group id",
-											"required" : true,
-											"type" : "id",
-											"paramType" : "path"
-										}
-									],
-									"responseMessages" : [{
-											"code" : "400",
-											"message" : "Invalid ID supplied"
-										}, {
-											"code" : "404",
-											"message" : "No group found"
-										}
-									]
-								}
-							]
-						}
-					],
-					"models" : {
-						"Meta" : {
-							"id" : "Meta",
-							"properties" : {
-								"total" : {
-									"type" : "integer"
-								},
-								"first" : {
-									"type" : "string"
-								},
-								"next" : {
-									"type" : "string"
-								},
-								"previous" : {
-									"type" : "string"
-								},
-								"last" : {
-									"type" : "string"
-								}
-							}
-						},
-						"PagedGroups" : {
-							"id" : "PagedGroups",
-							"properties" : {
-								"groups" : {
-									"type" : "array",
-									"items" : {
-										"$ref" : "Group"
-									}
-								},
-								"meta" : {
-									"type" : "Meta"
-								}
-							}
-						},
-						"WritableGroup" : {
-							"id" : "WritableGroup",
-							"properties" : {
-								"id" : {
-									"type" : "int"
-								},
-								"user_id" : {
-									"type" : "int"
-								},
-								"name" : {
-									"type" : "string"
-								},
-								"is_guest" : {
-									"type" : "boolean"
-								},
-								"is_default" : {
-									"type" : "boolean"
-								},
-								"is_active" : {
-									"type" : "boolean"
-								},
-								"is_system" : {
-									"type" : "boolean"
-								}
-							}
-						},
-						"Group" : {
-							"id" : "Group",
-							"properties" : {
-								"id" : {
-									"type" : "int"
-								},
-								"user_id" : {
-									"type" : "int"
-								},
-								"name" : {
-									"type" : "string"
-								},
-								"is_guest" : {
-									"type" : "boolean"
-								},
-								"is_default" : {
-									"type" : "boolean"
-								},
-								"is_active" : {
-									"type" : "boolean"
-								},
-								"is_system" : {
-									"type" : "boolean"
-								},
-								"created_at" : {
-									"type" : "string"
-								},
-								"updated_at" : {
-									"type" : "string"
-								}
-							}
-						}
-					}
-				},
-				"default-action" : "group-list"
-			}
-		},
-		"local" : "../../"
-	},
-	"keeko" : {
-		"module" : {
-			"title" : "group",
-			"class" : "keeko\\group\\GroupModule",
-			"slug" : "group",
-			"default-action" : "group-read"
-		}
-	}
+    "name": "keeko/group",
+    "type": "keeko-module",
+    "description": "Keeko group Module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gossi",
+            "homepage": "http://gos.si"
+        }
+    ],
+    "keywords": [
+        "keeko",
+        "group",
+        "permission"
+    ],
+    "require": {
+        "php": ">=5.4",
+        "keeko/composer-installer": "*"
+    },
+    "require-dev": {
+        "composer/composer": "@dev",
+        "keeko/core": "dev-master",
+        "propel/propel": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "keeko\\group\\": "src"
+        }
+    },
+    "extra": {
+        "keeko": {
+            "module": {
+                "title": "Groups",
+                "class": "keeko\\group\\GroupModule",
+                "slug": "group",
+                "actions": {
+                    "group-list": {
+                        "class": "keeko\\group\\action\\GroupListAction",
+                        "title": "List all groups",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupListJsonResponse"
+                        }
+                    },
+                    "group-create": {
+                        "class": "keeko\\group\\action\\GroupCreateAction",
+                        "title": "Creates a group",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupCreateJsonResponse"
+                        }
+                    },
+                    "group-read": {
+                        "class": "keeko\\group\\action\\GroupReadAction",
+                        "title": "Reads a group",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupReadJsonResponse"
+                        }
+                    },
+                    "group-update": {
+                        "class": "keeko\\group\\action\\GroupUpdateAction",
+                        "title": "Updates a group",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupUpdateJsonResponse"
+                        }
+                    },
+                    "group-delete": {
+                        "class": "keeko\\group\\action\\GroupDeleteAction",
+                        "title": "Deletes a group",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupDeleteJsonResponse"
+                        }
+                    }
+                },
+                "api": {
+                    "swaggerVersion": "1.2",
+                    "resourcePath": "/group",
+                    "apis": [
+                        {
+                            "path": "/groups",
+                            "operations": [
+                                {
+                                    "method": "GET",
+                                    "summary": "List all groups",
+                                    "nickname": "group-list",
+                                    "type": "PagedGroups"
+                                },
+                                {
+                                    "method": "POST",
+                                    "summary": "Creates a group",
+                                    "nickname": "group-create",
+                                    "type": "Group",
+                                    "parameters": [
+                                        {
+                                            "name": "body",
+                                            "description": "The new group",
+                                            "required": true,
+                                            "type": "WritableGroup",
+                                            "paramType": "body"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "path": "/groups/{id}",
+                            "operations": [
+                                {
+                                    "method": "GET",
+                                    "summary": "Reads a group",
+                                    "nickname": "group-read",
+                                    "type": "Group",
+                                    "parameters": [
+                                        {
+                                            "name": "id",
+                                            "description": "The group id",
+                                            "required": true,
+                                            "type": "id",
+                                            "paramType": "path"
+                                        }
+                                    ],
+                                    "responseMessages": [
+                                        {
+                                            "code": "400",
+                                            "message": "Invalid ID supplied"
+                                        },
+                                        {
+                                            "code": "404",
+                                            "message": "No group found"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "method": "PATCH",
+                                    "summary": "Updates a group",
+                                    "nickname": "group-update",
+                                    "type": "Group",
+                                    "parameters": [
+                                        {
+                                            "name": "id",
+                                            "description": "The group id",
+                                            "required": true,
+                                            "type": "id",
+                                            "paramType": "path"
+                                        }
+                                    ],
+                                    "responseMessages": [
+                                        {
+                                            "code": "400",
+                                            "message": "Invalid ID supplied"
+                                        },
+                                        {
+                                            "code": "404",
+                                            "message": "No group found"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "method": "DELETE",
+                                    "summary": "Deletes a group",
+                                    "nickname": "group-delete",
+                                    "type": "Group",
+                                    "parameters": [
+                                        {
+                                            "name": "id",
+                                            "description": "The group id",
+                                            "required": true,
+                                            "type": "id",
+                                            "paramType": "path"
+                                        }
+                                    ],
+                                    "responseMessages": [
+                                        {
+                                            "code": "400",
+                                            "message": "Invalid ID supplied"
+                                        },
+                                        {
+                                            "code": "404",
+                                            "message": "No group found"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "models": {
+                        "Meta": {
+                            "id": "Meta",
+                            "properties": {
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "first": {
+                                    "type": "string"
+                                },
+                                "next": {
+                                    "type": "string"
+                                },
+                                "previous": {
+                                    "type": "string"
+                                },
+                                "last": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "PagedGroups": {
+                            "id": "PagedGroups",
+                            "properties": {
+                                "groups": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "Group"
+                                    }
+                                },
+                                "meta": {
+                                    "type": "Meta"
+                                }
+                            }
+                        },
+                        "WritableGroup": {
+                            "id": "WritableGroup",
+                            "properties": {
+                                "id": {
+                                    "type": "int"
+                                },
+                                "user_id": {
+                                    "type": "int"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "is_guest": {
+                                    "type": "boolean"
+                                },
+                                "is_default": {
+                                    "type": "boolean"
+                                },
+                                "is_active": {
+                                    "type": "boolean"
+                                },
+                                "is_system": {
+                                    "type": "boolean"
+                                },
+                                "owner_id": {
+                                    "type": "int"
+                                }
+                            }
+                        },
+                        "Group": {
+                            "id": "Group",
+                            "properties": {
+                                "id": {
+                                    "type": "int"
+                                },
+                                "user_id": {
+                                    "type": "int"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "is_guest": {
+                                    "type": "boolean"
+                                },
+                                "is_default": {
+                                    "type": "boolean"
+                                },
+                                "is_active": {
+                                    "type": "boolean"
+                                },
+                                "is_system": {
+                                    "type": "boolean"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "owner_id": {
+                                    "type": "int"
+                                }
+                            }
+                        }
+                    }
+                },
+                "default-action": "group-list"
+            }
+        },
+        "local": "../../"
+    },
+    "keeko": {
+        "module": {
+            "title": "group",
+            "class": "keeko\\group\\GroupModule",
+            "slug": "group",
+            "default-action": "group-read"
+        }
+    }
 }
