@@ -1,19 +1,17 @@
 {
     "name": "keeko/group",
     "type": "keeko-module",
-    "description": "Keeko group Module",
     "license": "MIT",
     "authors": [
         {
-            "name": "gossi",
-            "homepage": "http://gos.si"
+            "name": "gossi"
         }
     ],
-    "keywords": [
-        "keeko",
-        "group",
-        "permission"
-    ],
+    "autoload": {
+        "psr-4": {
+            "keeko\\group\\": "src"
+        }
+    },
     "require": {
         "php": ">=5.4",
         "keeko/composer-installer": "*"
@@ -23,49 +21,45 @@
         "keeko/core": "dev-master",
         "propel/propel": "@dev"
     },
-    "autoload": {
-        "psr-4": {
-            "keeko\\group\\": "src"
-        }
-    },
     "extra": {
         "keeko": {
             "module": {
-                "title": "Groups",
+                "title": "Group",
                 "class": "keeko\\group\\GroupModule",
                 "slug": "group",
+                "default-action": "group-list",
                 "actions": {
-                    "group-list": {
-                        "class": "keeko\\group\\action\\GroupListAction",
-                        "title": "List all groups",
-                        "response": {
-                            "json": "keeko\\group\\response\\GroupListJsonResponse"
-                        }
-                    },
                     "group-create": {
-                        "class": "keeko\\group\\action\\GroupCreateAction",
                         "title": "Creates a group",
+                        "class": "keeko\\group\\action\\GroupCreateAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupCreateJsonResponse"
                         }
                     },
                     "group-read": {
-                        "class": "keeko\\group\\action\\GroupReadAction",
                         "title": "Reads a group",
+                        "class": "keeko\\group\\action\\GroupReadAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupReadJsonResponse"
                         }
                     },
+                    "group-list": {
+                        "title": "List all groups",
+                        "class": "keeko\\group\\action\\GroupListAction",
+                        "response": {
+                            "json": "keeko\\group\\response\\GroupListJsonResponse"
+                        }
+                    },
                     "group-update": {
-                        "class": "keeko\\group\\action\\GroupUpdateAction",
                         "title": "Updates a group",
+                        "class": "keeko\\group\\action\\GroupUpdateAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupUpdateJsonResponse"
                         }
                     },
                     "group-delete": {
-                        "class": "keeko\\group\\action\\GroupDeleteAction",
                         "title": "Deletes a group",
+                        "class": "keeko\\group\\action\\GroupDeleteAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupDeleteJsonResponse"
                         }
@@ -78,12 +72,6 @@
                         {
                             "path": "/groups",
                             "operations": [
-                                {
-                                    "method": "GET",
-                                    "summary": "List all groups",
-                                    "nickname": "group-list",
-                                    "type": "PagedGroups"
-                                },
                                 {
                                     "method": "POST",
                                     "summary": "Creates a group",
@@ -98,6 +86,12 @@
                                             "paramType": "body"
                                         }
                                     ]
+                                },
+                                {
+                                    "method": "GET",
+                                    "summary": "List all groups",
+                                    "nickname": "group-list",
+                                    "type": "PagedGroups"
                                 }
                             ]
                         },
@@ -130,7 +124,7 @@
                                     ]
                                 },
                                 {
-                                    "method": "PATCH",
+                                    "method": "PUT",
                                     "summary": "Updates a group",
                                     "nickname": "group-update",
                                     "type": "Group",
@@ -223,7 +217,7 @@
                                 "id": {
                                     "type": "int"
                                 },
-                                "user_id": {
+                                "owner_id": {
                                     "type": "int"
                                 },
                                 "name": {
@@ -240,9 +234,6 @@
                                 },
                                 "is_system": {
                                     "type": "boolean"
-                                },
-                                "owner_id": {
-                                    "type": "int"
                                 }
                             }
                         },
@@ -252,7 +243,7 @@
                                 "id": {
                                     "type": "int"
                                 },
-                                "user_id": {
+                                "owner_id": {
                                     "type": "int"
                                 },
                                 "name": {
@@ -275,25 +266,13 @@
                                 },
                                 "updated_at": {
                                     "type": "string"
-                                },
-                                "owner_id": {
-                                    "type": "int"
                                 }
                             }
                         }
                     }
-                },
-                "default-action": "group-list"
+                }
             }
         },
         "local": "../../"
-    },
-    "keeko": {
-        "module": {
-            "title": "group",
-            "class": "keeko\\group\\GroupModule",
-            "slug": "group",
-            "default-action": "group-read"
-        }
     }
 }
