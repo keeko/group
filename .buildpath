@@ -12,6 +12,7 @@
 	<buildpathentry kind="src" path="vendor/propel/propel/src"/>
 	<buildpathentry kind="src" path="src"/>
 	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
+	<buildpathentry kind="src" path="core/database"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/keeko/composer-installer/src"/>
 	<buildpathentry kind="src" path="vendor/psr/log"/>

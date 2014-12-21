@@ -34,35 +34,50 @@
                         "class": "keeko\\group\\action\\GroupCreateAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupCreateJsonResponse"
-                        }
+                        },
+                        "acl": [
+                            "admin"
+                        ]
                     },
                     "group-read": {
                         "title": "Reads a group",
                         "class": "keeko\\group\\action\\GroupReadAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupReadJsonResponse"
-                        }
+                        },
+                        "acl": [
+                            "admin"
+                        ]
                     },
                     "group-list": {
                         "title": "List all groups",
                         "class": "keeko\\group\\action\\GroupListAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupListJsonResponse"
-                        }
+                        },
+                        "acl": [
+                            "admin"
+                        ]
                     },
                     "group-update": {
                         "title": "Updates a group",
                         "class": "keeko\\group\\action\\GroupUpdateAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupUpdateJsonResponse"
-                        }
+                        },
+                        "acl": [
+                            "admin"
+                        ]
                     },
                     "group-delete": {
                         "title": "Deletes a group",
                         "class": "keeko\\group\\action\\GroupDeleteAction",
                         "response": {
                             "json": "keeko\\group\\response\\GroupDeleteJsonResponse"
-                        }
+                        },
+                        "acl": [
+                            "admin"
+                        ]
                     }
                 },
                 "api": {
