@@ -2,18 +2,15 @@
 namespace keeko\group\response;
 
 use keeko\core\model\Group;
-use keeko\core\action\AbstractResponse;
 use keeko\core\utils\FilterUtils;
 use Propel\Runtime\Map\TableMap;
 
 /**
- * Abstract Response for group, containing filter functionality.
- * 
- * This class is generated automatically, your changes may be overwritten - take care.
+ * Automatically generated common response methods for group
  * 
  * @author gossi
  */
-abstract class AbstractGroupResponse extends AbstractResponse {
+trait GroupResponseTrait {
 
 	/**
 	 * Automatically generated method, will be overridden

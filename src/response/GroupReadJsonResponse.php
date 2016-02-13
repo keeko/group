@@ -1,26 +1,27 @@
 <?php
 namespace keeko\group\response;
 
+use keeko\core\package\AbstractResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use keeko\core\model\Group;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * JsonResponse for Reads a group
+ * Automatically generated JsonResponse for Reads a group
  * 
  * @author gossi
  */
-class GroupReadJsonResponse extends AbstractGroupResponse {
+class GroupReadJsonResponse extends AbstractResponse {
+
+	use GroupResponseTrait;
 
 	/**
-	 * Automatically generated method, will be overridden
+	 * Automatically generated run method
 	 * 
 	 * @param Request $request
-	 * @return Response
+	 * @param mixed $data
+	 * @return JsonResponse
 	 */
-	public function run(Request $request) {
-		// return response
-		return new JsonResponse($this->groupToArray($this->data));
+	public function run(Request $request, $data = null) {
+		return new JsonResponse($this->groupToArray($data));
 	}
 }

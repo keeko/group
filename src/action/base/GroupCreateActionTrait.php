@@ -8,9 +8,9 @@ use keeko\core\exceptions\ValidationException;
 use keeko\core\utils\HydrateUtils;
 
 /**
- * Base methods for Creates a group
+ * Base methods for keeko\group\action\GroupCreateAction
  * 
- * This code is automatically created
+ * This code is automatically created. Modifications will probably be overwritten.
  * 
  * @author gossi
  */
@@ -33,8 +33,7 @@ trait GroupCreateActionTrait {
 			throw new ValidationException($group->getValidationFailures());
 		} else {
 			$group->save();
-			$this->response->setData($group);
-			return $this->response->run($request);
+			return $this->response->run($request, $group);
 		}
 	}
 }

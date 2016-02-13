@@ -3,19 +3,25 @@ namespace keeko\group\action\base;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use keeko\core\model\Group;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use keeko\core\model\GroupQuery;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Base methods for Deletes a group
+ * Base methods for keeko\group\action\GroupDeleteAction
  * 
- * This code is automatically created
+ * This code is automatically created. Modifications will probably be overwritten.
  * 
  * @author gossi
  */
 trait GroupDeleteActionTrait {
+
+	/**
+	 * @param OptionsResolver $resolver
+	 */
+	public function configureParams(OptionsResolver $resolver) {
+		$resolver->setRequired(['id']);
+	}
 
 	/**
 	 * Automatically generated run method
@@ -36,15 +42,7 @@ trait GroupDeleteActionTrait {
 		// delete
 		$group->delete();
 
-		// set response and go
-		$this->response->setData($group);
-		return $this->response->run($request);
-	}
-
-	/**
-	 * @param OptionsResolverInterface $resolver
-	 */
-	public function setDefaultParams(OptionsResolverInterface $resolver) {
-		$resolver->setRequired(['id']);
+		// run response
+		return $this->response->run($request, $group);
 	}
 }

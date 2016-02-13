@@ -1,7 +1,7 @@
 <?php
 namespace keeko\group\action;
 
-use keeko\core\action\AbstractAction;
+use keeko\core\package\AbstractAction;
 use keeko\group\action\base\GroupUpdateActionTrait;
 
 /**

@@ -4,15 +4,14 @@ namespace keeko\group\response;
 use keeko\core\package\AbstractResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use keeko\core\model\Group;
 
 /**
- * Automatically generated JsonResponse for Deletes a group
+ * Automatically generated JsonResponse for Reads the relationship of group to action
  * 
  * @author gossi
  */
-class GroupDeleteJsonResponse extends AbstractResponse {
-
-	use GroupResponseTrait;
+class GroupActionJsonResponse extends AbstractResponse {
 
 	/**
 	 * Automatically generated run method
@@ -22,6 +21,9 @@ class GroupDeleteJsonResponse extends AbstractResponse {
 	 * @return JsonResponse
 	 */
 	public function run(Request $request, $data = null) {
-		return new JsonResponse($this->groupToArray($data));
+		$serializer = Group::getSerializer();
+		$relationship = $serializer->actions();
+
+		return new JsonResponse($relationship->toArray());
 	}
 }

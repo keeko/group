@@ -1,0 +1,500 @@
+{
+	"swagger": "2.0",
+	"paths": {
+		"/groups": {
+			"POST": {
+				"description": "Creates a group",
+				"operationId": "group-create",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"description": "The new group",
+						"schema": {
+							"$ref": "#/definitions/WritableGroup"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "group created"
+					}
+				}
+			},
+			"GET": {
+				"description": "List all groups",
+				"operationId": "group-list",
+				"responses": {
+					"200": {
+						"description": "Array of groups",
+						"schema": {
+							"$ref": "#/definitions/PagedGroups"
+						}
+					}
+				}
+			}
+		},
+		"/groups/{id}": {
+			"GET": {
+				"description": "Reads a group",
+				"operationId": "group-read",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "gets the group",
+						"schema": {
+							"$ref": "#/definitions/Group"
+						}
+					},
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"PATCH": {
+				"description": "Updates a group",
+				"operationId": "group-update",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "group updated",
+						"schema": {
+							"$ref": "#/definitions/Group"
+						}
+					},
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"DELETE": {
+				"description": "Deletes a group",
+				"operationId": "group-delete",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "group deleted"
+					},
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			}
+		},
+		"/groups/{id}/relationship/users": {
+			"GET": {
+				"description": "Reads the relationship of group to user",
+				"operationId": "group-to-user-relationship-read",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"PATCH": {
+				"description": "Updates the relationship of group to user",
+				"operationId": "group-to-user-relationship-update",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"POST": {
+				"description": "Adds user as relationship to group",
+				"operationId": "group-to-user-relationship-add",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"DELETE": {
+				"description": "Removes user as relationship of group",
+				"operationId": "group-to-user-relationship-remove",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			}
+		},
+		"/groups/{id}/relationship/actions": {
+			"GET": {
+				"description": "Reads the relationship of group to action",
+				"operationId": "group-to-action-relationship-read",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"PATCH": {
+				"description": "Updates the relationship of group to action",
+				"operationId": "group-to-action-relationship-update",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"POST": {
+				"description": "Adds action as relationship to group",
+				"operationId": "group-to-action-relationship-add",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			},
+			"DELETE": {
+				"description": "Removes action as relationship of group",
+				"operationId": "group-to-action-relationship-remove",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "The group id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "No group found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"PagedMeta": {
+			"type": "object",
+			"properties": {
+				"total": {
+					"type": "integer"
+				},
+				"first": {
+					"type": "integer"
+				},
+				"next": {
+					"type": "integer"
+				},
+				"previous": {
+					"type": "integer"
+				},
+				"last": {
+					"type": "integer"
+				}
+			}
+		},
+		"ResourceIdentifier": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				}
+			}
+		},
+		"PagedGroups": {
+			"type": "object",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Group"
+					}
+				},
+				"meta": {
+					"$ref": "#/definitions/PagedMeta"
+				}
+			}
+		},
+		"WritableGroup": {
+			"type": "object",
+			"properties": {
+				"data": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"type": {
+							"type": "string"
+						},
+						"attributes": {
+							"type": "object",
+							"properties": {
+								"owner_id": {
+									"type": "int"
+								},
+								"name": {
+									"type": "string"
+								},
+								"is_guest": {
+									"type": "boolean"
+								},
+								"is_default": {
+									"type": "boolean"
+								},
+								"is_active": {
+									"type": "boolean"
+								},
+								"is_system": {
+									"type": "boolean"
+								}
+							}
+						},
+						"relationships": {
+							"type": "object",
+							"properties": {
+								"users": {
+									"type": "object",
+									"properties": {
+										"data": {
+											"type": "array",
+											"items": {
+												"$ref": "#/definitions/ResourceIdentifier"
+											}
+										}
+									}
+								},
+								"actions": {
+									"type": "object",
+									"properties": {
+										"data": {
+											"type": "array",
+											"items": {
+												"$ref": "#/definitions/ResourceIdentifier"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"Group": {
+			"type": "object",
+			"properties": {
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string"
+						}
+					}
+				},
+				"data": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"type": {
+							"type": "string"
+						},
+						"attributes": {
+							"type": "object",
+							"properties": {
+								"owner_id": {
+									"type": "int"
+								},
+								"name": {
+									"type": "string"
+								},
+								"is_guest": {
+									"type": "boolean"
+								},
+								"is_default": {
+									"type": "boolean"
+								},
+								"is_active": {
+									"type": "boolean"
+								},
+								"is_system": {
+									"type": "boolean"
+								},
+								"created_at": {
+									"type": "string"
+								},
+								"updated_at": {
+									"type": "string"
+								}
+							}
+						},
+						"relationships": {
+							"type": "object",
+							"properties": {
+								"users": {
+									"type": "object",
+									"properties": {
+										"links": {
+											"type": "object",
+											"properties": {
+												"self": {
+													"type": "string"
+												}
+											}
+										},
+										"data": {
+											"type": "array",
+											"items": {
+												"$ref": "#/definitions/ResourceIdentifier"
+											}
+										}
+									}
+								},
+								"actions": {
+									"type": "object",
+									"properties": {
+										"links": {
+											"type": "object",
+											"properties": {
+												"self": {
+													"type": "string"
+												}
+											}
+										},
+										"data": {
+											"type": "array",
+											"items": {
+												"$ref": "#/definitions/ResourceIdentifier"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

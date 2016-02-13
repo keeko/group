@@ -1,10 +1,10 @@
 <?php
 namespace keeko\group;
 
-use keeko\core\module\AbstractModule;
+use keeko\core\package\AbstractModule;
 
 /**
- * Keeko Group
+ * Group
  * 
  * @license MIT
  * @author gossi

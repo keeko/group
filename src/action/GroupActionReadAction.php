@@ -1,20 +1,17 @@
 <?php
-namespace keeko\group\action\base;
+namespace keeko\group\action;
 
+use keeko\core\package\AbstractAction;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use keeko\core\model\GroupQuery;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Tobscure\JsonApi\Exception\InvalidParameterException;
+use keeko\core\model\GroupQuery;
 
 /**
- * Base methods for keeko\group\action\GroupReadAction
- * 
- * This code is automatically created. Modifications will probably be overwritten.
- * 
- * @author gossi
  */
-trait GroupReadActionTrait {
+class GroupActionReadAction extends AbstractAction {
 
 	/**
 	 * @param OptionsResolver $resolver
@@ -30,14 +27,8 @@ trait GroupReadActionTrait {
 	 * @return Response
 	 */
 	public function run(Request $request) {
-		// read
 		$id = $this->getParam('id');
 		$group = GroupQuery::create()->findOneById($id);
-
-		// check existence
-		if ($group === null) {
-			throw new ResourceNotFoundException('group not found.');
-		}
 
 		// run response
 		return $this->response->run($request, $group);
